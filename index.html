@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zain Store - Karachi Products</title>
+    <meta name="description" content="Zain Haider Karachi Store - Premium products with dark blue design. Wireless headphones, smart watch, laptop stand.">
+    <style>
+        :root {
+            --dark-bg: #0f0f23;
+            --blue: #1e3a8a;
+            --white: #ffffff;
+            --accent: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--dark-bg); 
+            color: var(--white); 
+            font-family: 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(15,15,35,0.95);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem; 
+            background: linear-gradient(45deg, var(--accent), var(--white));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-menu {
+            display: flex; list-style: none; gap: 2rem;
+        }
+        .nav-menu a {
+            color: var(--white); text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover { color: var(--accent); }
+        .cart-count {
+            background: var(--accent); padding: 0.5rem 1rem;
+            border-radius: 20px; font-weight: bold;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--dark-bg) 100%);
+            height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; text-align: center;
+            padding: 0 2rem;
+        }
+        .hero h1 {
+            font-size: 4rem; margin-bottom: 1rem;
+            opacity: 0; animation: fadeInUp 1s forwards;
+        }
+        .hero p { font-size: 1.5rem; margin-bottom: 3rem; }
+        .search-bar {
+            display: flex; gap: 1rem; max-width: 500px; width: 100%;
+            opacity: 0; animation: fadeInUp 1s 0.3s forwards;
+        }
+        .search-bar input {
+            flex: 1; padding: 1rem; background: rgba(255,255,255,0.1);
+            border: 1px solid var(--accent); border-radius: 50px;
+            color: var(--white);
+        }
+        .search-bar button {
+            padding: 1rem 2rem; background: var(--accent);
+            border: none; border-radius: 50px; color: var(--dark-bg);
+            font-weight: bold; cursor: pointer;
+        }
+        
+        .products {
+            padding: 6rem 2rem 4rem;
+        }
+        h2 {
+            text-align: center; font-size: 3rem; margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--white), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .product-card {
+            background: rgba(30,58,138,0.3); border: 1px solid var(--accent);
+            border-radius: 20px; overflow: hidden;
+            transition: all 0.4s; cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-20px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .product-card img {
+            width: 100%; height: 250px; object-fit: cover;
+        }
+        .product-info { padding: 1.5rem; }
+        .product-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .price { font-size: 1.8rem; color: var(--accent); font-weight: bold; }
+        .add-btn {
+            width: 100%; margin-top: 1rem; padding: 1rem;
+            background: var(--accent); color: var(--dark-bg);
+            border: none; border-radius: 10px; font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .contact {
+            text-align: center; padding: 4rem 2rem;
+            background: rgba(255,255,255,0.05);
+        }
+        footer {
+            background: var(--blue); text-align: center; padding: 2rem;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Zain Store</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <span class="cart-count">Cart: 0</span>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Premium Products</h1>
+        <p>Clean, minimal. From Karachi with quality.</p>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search products...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Featured Products</h2>
+        <div id="product-grid" class="product-grid"></div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Zain</h2>
+        <p>Karachi, Pakistan | zain@example.com</p>
+    </section>
+
+    <footer>© 2026 Zain Haider. All rights reserved.</footer>
+
+    <script>
+        const products = [
+            { id: 1, name: 'Wireless Headphones', price: 99, img: 'https://via.placeholder.com/400x300/1e3a8a/ffffff?text=Headphones' },
+            { id: 2, name: 'Smart Watch', price: 199, img: 'https://via.placeholder.com/400x300/3b82f6/ffffff?text=Watch' },
+            { id: 3, name: 'Laptop Stand', price: 49, img: 'https://via.placeholder.com/400x300/0f0f23/ffffff?text=Stand' },
+            { id: 4, name: 'Bluetooth Speaker', price: 79, img: 'https://via.placeholder.com/400x300/1e3a8a/ffffff?text=Speaker' }
+        ];
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function renderProducts(filter = '') {
+            const container = document.getElementById('product-grid');
+            container.innerHTML = '';
+            const filtered = products.filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <div class="price">$${product.price}</div>
+                        <button class="add-btn" onclick="addToCart(${product.id}, event)">Add to Cart</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            updateCartCount();
+        }
+        
+        function addToCart(id, event) {
+            event.stopPropagation();
+            const product = products.find(p => p.id === id);
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            document.querySelector('.cart-count').textContent = `Cart: ${cart.length}`;
+        }
+        
+        function searchProducts() {
+            const query = document.getElementById('search').value;
+            renderProducts(query);
+        }
+        
+        // Init
+        renderProducts();
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Zain Store</title>
+    <meta name="description" content="Zain Haider Karachi Store - All premium products catalog. Wireless headphones, smart watch, laptop stand, Bluetooth speaker.">
+    <style>
+        :root {
+            --dark-bg: #0f0f23;
+            --blue: #1e3a8a;
+            --white: #ffffff;
+            --accent: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--dark-bg); 
+            color: var(--white); 
+            font-family: 'Segoe UI', sans-serif; 
+            line-height: 1.6; 
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(15,15,35,0.95);
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 1rem 2rem;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem; 
+            background: linear-gradient(45deg, var(--accent), var(--white));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-menu {
+            display: flex; list-style: none; gap: 2rem;
+        }
+        .nav-menu a {
+            color: var(--white); text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover { color: var(--accent); }
+        .cart-count {
+            background: var(--accent); padding: 0.5rem 1rem;
+            border-radius: 20px; font-weight: bold;
+        }
+        
+        .products {
+            padding: 8rem 2rem 4rem;
+        }
+        h2 {
+            text-align: center; font-size: 3rem; margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--white), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .product-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto;
+        }
+        .product-card {
+            background: rgba(30,58,138,0.3); border: 1px solid var(--accent);
+            border-radius: 20px; overflow: hidden;
+            transition: all 0.4s; cursor: pointer;
+        }
+        .product-card:hover {
+            transform: translateY(-20px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--white);
+        }
+        .product-card img {
+            width: 100%; height: 250px; object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+        .product-info { padding: 1.5rem; }
+        .product-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .price { font-size: 1.8rem; color: var(--accent); font-weight: bold; }
+        .add-btn {
+            width: 100%; margin-top: 1rem; padding: 1rem;
+            background: var(--accent); color: var(--dark-bg);
+            border: none; border-radius: 10px; font-weight: bold;
+            cursor: pointer;
+<!-- Replace product card creation in script.js renderProducts function -->
+card.onclick = () => openLightbox(product.id);
+card.innerHTML = `
+    <img src="${product.images[0]}" alt="${product.name}">
+    <div class="product-info">
+        <h3>${product.name}</h3>
+        <div class="price">$${product.price}</div>
+        <button class="add-btn" onclick="addToCart(${product.id}, event)">Add to Cart</button>
+    </div>
+`;
